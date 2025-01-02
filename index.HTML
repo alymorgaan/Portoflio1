@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Aly Morgan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #1f2a44;
+            color: #fff;
+            padding: 40px 10%;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        nav a:hover {
+            color: #4CAF50;
+        }
+        section {
+            padding: 40px 10%;
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        section h2 {
+            font-size: 28px;
+            color: #1f2a44;
+            margin-bottom: 20px;
+        }
+        .skills, .projects, .contact {
+            margin-bottom: 40px;
+        }
+        .skill-bar {
+            margin: 20px 0;
+        }
+        .skill-bar span {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            height: 20px;
+        }
+        .bar-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            transition: width 0.5s ease-in-out;
+        }
+        footer {
+            background-color: #1f2a44;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .project {
+            width: calc(33.33% - 20px);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .project:hover {
+            transform: scale(1.05);
+        }
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .project-description {
+            display: none;
+            margin-top: 10px;
+            color: #555;
+        }
+        #skills {
+            background-color: #f8f8f8;
+        }
+        #contact {
+            background-color: #e8f7e9;
+            text-align: center;
+            padding: 40px 10%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #contact ul {
+            list-style: none;
+            padding: 0;
+        }
+        #contact li {
+            margin: 10px 0;
+        }
+        .see-more-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .see-more-btn:hover {
+            background-color: #45a049;
+        }
+        .project-description {
+            font-size: 14px;
+            color: #666;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const skills = [
+                { name: "HTML", level: 95 },
+                { name: "CSS", level: 90 },
+                { name: "JS", level: 85 },
+                { name: "JQuery", level: 80 },
+                { name: "BootStrap", level: 85 },
+                { name: "Vue.Js", level: 75 },
+                { name: "PHP", level: 92 },
+                { name: "MySQL", level: 87 },
+                { name: "Laravel Framework", level: 90 },
+                { name: "Wordpress", level: 93 }
+            ];
+
+            const skillsContainer = document.getElementById("skills-container");
+            skills.forEach(skill => {
+                const skillBar = document.createElement("div");
+                skillBar.className = "skill-bar";
+
+                const skillName = document.createElement("span");
+                skillName.textContent = skill.name;
+                skillBar.appendChild(skillName);
+
+                const bar = document.createElement("div");
+                bar.className = "bar";
+
+                const barFill = document.createElement("div");
+                barFill.className = "bar-fill";
+                barFill.style.width = `${skill.level}%`;
+                barFill.textContent = `${skill.level}%`;
+                bar.appendChild(barFill);
+
+                skillBar.appendChild(bar);
+                skillsContainer.appendChild(skillBar);
+            });
+
+            // Toggle project description
+            const projectItems = document.querySelectorAll(".project");
+            projectItems.forEach(project => {
+                project.addEventListener("click", () => {
+                    const description = project.querySelector(".project-description");
+                    description.style.display = description.style.display === "block" ? "none" : "block";
+                });
+            });
+
+            // Show all projects when 'See More' is clicked
+            const seeMoreBtn = document.getElementById("see-more-btn");
+            const hiddenProjects = document.querySelectorAll(".hidden-project");
+
+            seeMoreBtn.addEventListener("click", () => {
+                hiddenProjects.forEach(project => {
+                    project.style.display = "block";
+                });
+                seeMoreBtn.style.display = "none";
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Aly Morgan</h1>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am Engineer Aly Morgan, a Computer Science Engineer and a graduate of Information Systems. I have studied programming courses, specifically PHP Fullstack Web Development, at the Russian Cultural Center in Cairo. I have worked on several projects, including the following:</p>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div id="skills-container"></div>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project">
+                <h3>Full Website Development Project</h3>
+                <a href="https://www.sultangardens.com/ar"> <img src="IMG/unnamed.jpg" ></a>
+                <div class="project-description">
+                    <p>A website of sultan gadis resort hotel developed using PHP, HTML, and CSS as part of a complete web development course.</p>
+                </div>
+            </div>
+            <div class="project">
+                <h3>Paywl</h3>
+                <a href="https://www.paywl.com/"> <img src="IMG/4.PNG" ></a>
+                <div class="project-description">
+                    <p>PAYWL is an Egyptian private joint stock company, established in 2017 to provide cashless payment services, e-commerce, points of sale, QR codes, voice boxes, wallets, card processing, and all types of modern payment solutions. The site was created using PHP, Laravel, MySQL.</p>
+                </div>
+            </div>
+            <div class="project">
+                <h3>Tie-house</h3>
+                <a href="https://tie-house.com/"> <img src="IMG/3.PNG" ></a>
+                <div class="project-description">
+                    <p>Tie-house is a site that provides services in the world of classic clothing and is considered one of the most successful in its field. It was created by Wordpress, MySQL.</p>
+                </div>
+            </div>
+            <div class="project hidden-project">
+                <h3>Ellithy-Cars</h3>
+                <a href="https://ellithy.com/"> <img src="IMG/1.PNG" ></a>
+                <div class="project-description">
+                    <p>A web application that helps users book and purchase cars, built using Laravel Framework and MySQL.</p>
+                </div>
+            </div>
+            <div class="project hidden-project">
+                <h3>Elmasria-auto</h3>
+                <a href="https://elmasria-auto.com/ar/CarsSearch/101/0/1/0/1000/10000000"> <img src="IMG/2.PNG" ></a>
+                <div class="project-description">
+                    <p>A web application that helps users book, purchase and maintain cars, built using Laravel Framework, MySQL and Wordpress.</p>
+                </div>
+            </div>
+        </div>
+        <button id="see-more-btn" class="see-more-btn">See More</button>
+    </section>   
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>You can reach me through:</p>
+        <ul>
+            <li>Phone: +201113045888</li>
+            <li>Email: <a href="mailto:alymorgan@live.com">alymorgan@live.com</a></li>
+        </ul>
+    </section>
+    <footer>
+        <p>Designed by Aly Morgan | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
